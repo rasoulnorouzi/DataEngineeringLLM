@@ -1,0 +1,11 @@
+id,name,price,category,rating,stock,date_added
+1,Barbie Doll Classic,29.99,Dolls,4.5,150,2026-01-15
+2,Barbie Dreamhouse,199.99,Playsets,4.8,45,2026-01-20
+3,Barbie Fashion Pack,19.99,Accessories,4.2,200,2026-02-01
+4,Barbie Convertible,49.99,Vehicles,4.6,80,2026-02-10
+5,Barbie Career Set,39.99,Dolls,4.4,120,2026-02-15
+6,Barbie Pet Collection,24.99,Pets,4.3,95,2026-03-01
+7,Barbie Castle Playset,149.99,Playsets,4.7,30,2026-03-05
+8,Barbie Boat,59.99,Vehicles,4.1,60,2026-03-10
+9,Barbie Wardrobe,34.99,Accessories,4.5,110,2026-03-15
+10,Barbie Horse,44.99,Pets,4.6,75,2026-03-20
