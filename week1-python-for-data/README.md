@@ -1,8 +1,24 @@
-# Week 1 — Python for Data Engineering
+# Week 1: Python for Data Engineering
 
-## 📚 Overview
+Welcome to Week 1 of the **Data Engineering & LLMs for Organizational Process Automation** curriculum! 🎉
 
 This week focuses on writing **clean, professional Python code** for data engineering. You'll master the foundational tools through detailed explanations and hands-on practice.
+
+## 📁 Folder Structure
+
+```
+week1-python-for-data/
+├── .vscode/
+│   └── settings.json              # VS Code configuration
+├── data/
+│   ├── barbie.csv                 # Sample dataset for exercises
+│   └── sample_sales.csv           # Generated during exercises
+├── data_output/                   # Pipeline output directory
+├── output/                        # Reports output directory
+├── 01_python_for_data.ipynb       # Main notebook (work through this)
+├── 01_python_for_data_executed.ipynb  # Reference version with outputs
+└── README.md                      # This file
+```
 
 ---
 
@@ -129,12 +145,11 @@ This week focuses on writing **clean, professional Python code** for data engine
 
 ## 📂 Files Included
 
-- **`week1_python_for_data.ipynb`** — Blank notebook (no outputs)
-- **`week1_python_for_data_executed.ipynb`** — Pre-executed with all outputs
-- **`barbie.csv`** — Sample dataset for exercises
-- **`sample_sales.csv`** — Generated during exercises
-- **`WEEK1_README.md`** — This file
-- **`build_week1_notebook.py`** — Script that generates the notebook
+- **`01_python_for_data.ipynb`** — Blank notebook (no outputs) — **work through this one**
+- **`01_python_for_data_executed.ipynb`** — Pre-executed with all outputs (reference version)
+- **`data/barbie.csv`** — Sample dataset for exercises
+- **`data/sample_sales.csv`** — Generated during exercises
+- **`README.md`** — This file
 
 ---
 
@@ -143,22 +158,28 @@ This week focuses on writing **clean, professional Python code** for data engine
 ### Option 1: Learn by Doing (Recommended)
 ```bash
 # Navigate to project directory
-cd /home/rass/Downloads/projects/LLM_engineer
+cd week1-python-for-data
 
-# Activate virtual environment
-source myenv/bin/activate
+# Create and activate virtual environment
+python -m venv .venv
+source .venv/bin/activate  # On Linux/Mac
+# OR
+.venv\Scripts\activate     # On Windows
+
+# Install dependencies
+pip install jupyter pandas numpy
 
 # Start Jupyter
 jupyter notebook
 
-# Open: week1_python_for_data.ipynb
+# Open: 01_python_for_data.ipynb
 # Read the theory, then run each cell yourself!
 ```
 
 ### Option 2: See All Outputs
 ```bash
 # Open the pre-executed version
-jupyter notebook week1_python_for_data_executed.ipynb
+jupyter notebook 01_python_for_data_executed.ipynb
 ```
 
 ---
@@ -244,11 +265,13 @@ Teaches professional practices from day one:
 ## 🎯 Next Steps
 
 After completing Week 1:
-- Practice daily with real datasets
-- Refactor old code to use type hints
-- Replace print statements with logging
-- Start using pathlib instead of os.path
-- Prepare for Week 2!
+- ✅ Practice daily with real datasets
+- ✅ Refactor old code to use type hints
+- ✅ Replace `print()` statements with `logging`
+- ✅ Start using `pathlib` instead of `os.path`
+- ✅ Move on to **Week 2: SQL and Relational Databases** → [`../week2-sql-databases/`](../week2-sql-databases/README.md)
+
+In Week 2, you'll learn PostgreSQL, SQL queries, JOINs, window functions, indexing, and DuckDB — the same SQL skills you'll use in every data engineering role!
 
 ---
 
