@@ -1,0 +1,9 @@
+psycopg2-binary
+sqlalchemy
+ipykernel
+jupyter
+pandas
+duckdb
+pyarrow
+python-dotenv
+tabulate

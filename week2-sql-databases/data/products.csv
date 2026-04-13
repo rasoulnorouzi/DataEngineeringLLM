@@ -1,0 +1,18 @@
+product_id,product_name,category,unit_price
+1,DataFlow Pro,Software,499.99
+2,CloudSync Enterprise,Software,899.99
+3,AnalyticsSuite,Software,1299.99
+4,SecureVault,Software,399.99
+5,AutoReport Generator,Software,249.99
+6,Server Rack X200,Hardware,5499.99
+7,Network Switch Pro,Hardware,1299.99
+8,Storage Array 10TB,Hardware,2899.99
+9,Load Balancer LB-500,Hardware,3499.99
+10,Implementation Package,Services,15000.00
+11,Premium Support Annual,Services,8500.00
+12,Custom Integration,Services,12000.00
+13,Data Migration Service,Services,9500.00
+14,SQL Fundamentals Workshop,Training,1500.00
+15,Advanced Analytics Certification,Training,3500.00
+16,Data Engineering Bootcamp,Training,5000.00
+17,Legacy System Module,Software,199.99

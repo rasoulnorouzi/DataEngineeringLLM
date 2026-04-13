@@ -1,0 +1,7 @@
+dept_id,dept_name,location,budget
+1,Engineering,Building A,2500000.00
+2,Human Resources,Building B,800000.00
+3,Finance,Building C,1200000.00
+4,Marketing,Building D,950000.00
+5,Sales,Building E,1800000.00
+6,Operations,Building F,1100000.00
