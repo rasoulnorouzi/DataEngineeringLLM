@@ -1,0 +1,5 @@
+2026-04-22 01:45:11,581 - INFO - Pipeline started
+2026-04-22 01:45:11,582 - INFO - Loading data from CSV
+2026-04-22 01:45:11,582 - WARNING - Some records have missing values
+2026-04-22 01:45:11,582 - ERROR - Failed to process row 42
+2026-04-22 01:45:11,582 - INFO - Pipeline completed
