@@ -525,7 +525,7 @@ CREATE UNIQUE INDEX idx_users_email ON users (email);
 
 ## Forward Connection: Indexing in ETL Pipelines
 
-In **Week 4**, when you build ETL (Extract, Transform, Load) pipelines, you will create and populate tables with raw data. After loading, you will add indexes to frequently-queried columns to speed up downstream transformations and reporting queries.
+In **Week B of this module**, when you build your ELT (Extract, Load, Transform) pipeline project, you will create and populate tables with raw data. After loading, you will add indexes to frequently-queried columns to speed up downstream transformations and reporting queries.
 
 A typical ETL pattern:
 

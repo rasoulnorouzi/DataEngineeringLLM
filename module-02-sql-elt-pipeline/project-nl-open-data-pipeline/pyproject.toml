@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nl-open-data-pipeline"
+version = "0.1.0"
+description = "Scheduled ELT pipeline: Dutch open weather data -> PostgreSQL (raw/staging/marts)"
+requires-python = ">=3.10"
+dependencies = [
+    "requests>=2.31",
+    "SQLAlchemy>=2.0",
+    "psycopg2-binary>=2.9",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.4",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]

@@ -337,7 +337,7 @@ In practice, data engineers often use **both**:
 │                     Production Phase                        │
 │                                                             │
 │   PostgreSQL / Cloud Data Warehouse                         │
-│   ├── Deploy proven transformations as dbt models           │
+│   ├── Deploy proven transformations as scheduled SQL layers │
 │   ├── Schedule recurring data pipelines                     │
 │   ├── Serve BI dashboards and downstream consumers          │
 │   └── Ensure data quality with tests and constraints        │
@@ -345,7 +345,7 @@ In practice, data engineers often use **both**:
 └─────────────────────────────────────────────────────────────┘
 ```
 
-> **Forward Connection:** In Module 4, you will use DuckDB to prototype transformations locally before deploying them as dbt models in your production data warehouse. The SQL you write and test in DuckDB will be nearly identical to the SQL that runs in your production environment — DuckDB is your local sandbox for production-grade data engineering.
+> **Forward Connection:** In this module's Week B project, you will use DuckDB to prototype and analyze transformations locally, while PostgreSQL runs the scheduled pipeline. The SQL you write and test in DuckDB is nearly identical to the SQL that runs in Postgres — DuckDB is your local sandbox for production-grade data engineering.
 
 ---
 

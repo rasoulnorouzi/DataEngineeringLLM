@@ -304,7 +304,7 @@ docker rmi postgres:16
 docker volume ls
 
 # Remove a specific volume
-docker volume rm week2-sql-databases_postgres_data
+docker volume rm project-nl-open-data-pipeline_postgres_data
 
 # Clean up everything unused (images, volumes, networks)
 docker system prune -a --volumes
@@ -346,7 +346,7 @@ Look for error messages. Common issues:
 docker compose -f docker/docker-compose.yml down
 
 # Delete the data volume (⚠️ destroys database data!)
-docker volume rm week2-sql-databases_postgres_data
+docker volume rm project-nl-open-data-pipeline_postgres_data
 
 # Start fresh
 docker compose -f docker/docker-compose.yml up -d
@@ -423,7 +423,7 @@ The `healthcheck` section in our compose file lets you know when PostgreSQL is a
 
 ## Forward Connection
 
-> **Looking ahead:** Docker isn't just for this course. In **Week 4**, you'll use Docker to run Apache Airflow for ETL pipeline orchestration. In **Week 6**, you'll containerize dbt projects. In **Module 3**, you'll run vector databases in Docker for AI embeddings. Understanding Docker now makes every future module easier.
+> **Looking ahead:** Docker isn't just for this module. In **Module 3**, you'll write your own Dockerfile to containerize a FastAPI service and ship it to Azure. In **Module 5**, you'll run a pgvector-enabled Postgres image for AI embeddings. In the **capstone**, one `docker compose up` starts your whole AI application stack. Understanding Docker now makes every future module easier.
 
 ---
 

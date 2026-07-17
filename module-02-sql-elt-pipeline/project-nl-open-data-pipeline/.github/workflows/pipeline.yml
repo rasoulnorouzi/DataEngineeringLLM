@@ -1,0 +1,47 @@
+# The "night shift": runs the whole pipeline end-to-end every morning against
+# a throwaway Postgres, using the LIVE Open-Meteo API. A green run proves the
+# pipeline still works; a red run emails you.
+# (In Module 3 this will target a persistent Azure database instead.)
+name: Scheduled pipeline run
+
+on:
+  schedule:
+    - cron: "0 5 * * *"   # daily at 05:00 UTC (06:00/07:00 in NL)
+  workflow_dispatch:       # manual "Run workflow" button for testing
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: week2_db
+          POSTGRES_USER: student
+          POSTGRES_PASSWORD: student123
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U student -d week2_db"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      DATABASE_URL: postgresql+psycopg2://student:student123@localhost:5432/week2_db
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install -e ".[dev]"
+
+      - name: Run the full pipeline (fetch -> load -> transform)
+        run: python -m pipeline.run
+
+      - name: Verify results with integration tests
+        run: pytest -v tests/test_db_integration.py

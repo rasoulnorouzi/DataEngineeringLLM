@@ -39,7 +39,7 @@ With a window function (still 100 rows)
 Every row survives. The aggregate rides along as a new column.
 ```
 
-In Week 6, you will use window functions inside dbt models to compute running metrics -- like running revenue or month-over-month growth -- as part of automated data pipelines. The output of one model becomes the input of the next, and window functions are the workhorse for these calculations.
+In this module's Week B project, you will use window functions in the marts layer of your ELT pipeline to compute running metrics -- like running totals or week-over-week change -- as part of an automated data pipeline. The output of one transformation layer becomes the input of the next, and window functions are the workhorse for these calculations.
 
 ---
 
@@ -385,7 +385,7 @@ SELECT
 FROM employees;
 ```
 
-In Week 6, you will use `DENSE_RANK()` in dbt models to compute metrics like "each product's rank by revenue within its category this month."
+In real pipelines, `DENSE_RANK()` powers metrics like "each product's rank by revenue within its category this month" — you'll use this pattern in your project's marts layer.
 
 ---
 
@@ -456,7 +456,7 @@ LAG(monthly_revenue, 1, 0) OVER(ORDER BY sale_month) AS prev_month_revenue
 -- First row gets 0 instead of NULL
 ```
 
-In Week 6, `LAG()` is the standard tool in dbt pipelines for computing month-over-month growth rates, which are essential for business dashboards.
+In production pipelines, `LAG()` is the standard tool for computing period-over-period growth rates (day-over-day, week-over-week), which are essential for business dashboards — your Week B marts layer will use exactly this.
 
 ---
 
@@ -523,7 +523,7 @@ Notice how Jan 4's moving average (156.7) uses only Jan 2, Jan 3, and Jan 4. Jan
 
 ### Why this matters in pipelines
 
-In Week 6, you will build dbt models that compute running metrics automatically. A typical pipeline might:
+In this module's Week B project, you will build SQL transformation layers that compute running metrics automatically. A typical pipeline might:
 1. Aggregate daily sales into a fact table
 2. Apply window functions to compute running totals and 7-day moving averages
 3. Feed these smoothed metrics into a business dashboard
@@ -740,4 +740,4 @@ FROM ranked
 WHERE rn <= <N>;
 ```
 
-Replace `<group_column>`, `<ranking_column>`, and `<N>` with your specifics. In Week 6, you will use this exact pattern in dbt models to surface "top performers per category" as reusable data models that feed dashboards and reports.
+Replace `<group_column>`, `<ranking_column>`, and `<N>` with your specifics. In your pipeline's marts layer, you will use this exact pattern to surface "top performers per category" as reusable data models that feed dashboards and reports.

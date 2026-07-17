@@ -510,7 +510,7 @@ Each CTE builds on the previous one, creating a readable data pipeline. This is 
 
 ### Connection to Modern Data Engineering
 
-> **Looking ahead to Week 6:** When you learn dbt (data build tool), every model you write will use CTEs exactly like the examples above. dbt generates SQL, and that SQL is almost always structured as a chain of CTEs. The `department_avg`, `company_avg`, and `above_average_depts` pattern you see here is the same pattern professional analytics engineers use in production dbt projects. The only difference is that in dbt, each CTE might become its own model file. Learning CTEs now means you are already learning the dbt mental model.
+> **Looking ahead:** In this module's Week B, you will build a layered ELT pipeline (raw → staging → marts), and every transformation layer is structured exactly like the CTE chains above — each step named clearly, each building on the previous one. This is also the mental model behind industry tools like dbt (covered in a short concepts lesson in Week B): in dbt, each CTE simply becomes its own model file. Learning CTEs now means you are already learning how professional transformation pipelines are organized.
 
 ---
 

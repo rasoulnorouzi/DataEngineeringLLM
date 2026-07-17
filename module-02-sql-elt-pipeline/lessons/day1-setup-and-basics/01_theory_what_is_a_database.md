@@ -251,7 +251,7 @@ With Docker, PostgreSQL runs in its own container:
 
 ### Forward Connection
 
-> **Looking ahead:** The SQL you learn this week is the same SQL you'll use in **Week 6 with dbt** (a tool that generates SQL transformations for data pipelines). It's the same SQL behind **pgvector in Module 3** when you store AI embeddings in PostgreSQL. And it's the same SQL you'll write in every data engineering role for the rest of your career. SQL is a forever skill.
+> **Looking ahead:** The SQL you learn this week powers your **Week B pipeline project** (layered transformations in PostgreSQL). It's the same SQL behind **pgvector in Module 5** when you store AI embeddings in PostgreSQL, and the same SQL your **Module 6 agent** will generate to answer natural-language questions. And it's the same SQL you'll write in every AI/data engineering role for the rest of your career. SQL is a forever skill.
 
 ---
 

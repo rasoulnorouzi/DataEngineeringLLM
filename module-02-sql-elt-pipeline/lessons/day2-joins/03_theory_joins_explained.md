@@ -337,7 +337,7 @@ SQL JOINs are often more readable because the ON condition is explicit — you s
 
 ## Forward Connection
 
-> **Looking ahead:** In Week 4, you'll build ETL pipelines that JOIN data from multiple sources — a CRM table, a billing table, and a support ticket table. The JOINs you learn today are the foundation of those pipelines. In Week 6, dbt models are essentially chains of JOINs wrapped in CTEs. Master JOINs now, and those later modules will feel natural.
+> **Looking ahead:** In this module's Week B, you'll build an ELT pipeline whose transformation layers JOIN data from multiple sources. The JOINs you learn today are the foundation of those pipelines — production transformation models are essentially chains of JOINs wrapped in CTEs. Master JOINs now, and everything that follows will feel natural.
 
 ---
 
