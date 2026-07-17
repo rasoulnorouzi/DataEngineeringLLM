@@ -114,8 +114,14 @@ DataEngineeringLLM/
 └── module-07-capstone/
 ```
 
-**Key convention:** each `project-*/` folder is self-contained so the learner can copy it out as a
-standalone public GitHub repo with a green CI badge — that repo is the CV artifact.
+**Key conventions:**
+- Each `project-*/` folder is self-contained so the learner can copy it out as a standalone
+  public GitHub repo with a green CI badge — that repo is the CV artifact.
+- Every module README is a **route**: an ordered checkbox path naming the exact file for every
+  step (no "where do I start?" ever). Reference: `module-02-sql-elt-pipeline/README.md`.
+- Every project ships a learner-facing **`PROJECT_GUIDE.md`** (run steps, architecture, code
+  walkthrough, design rationale, build-it-yourself recipe, milestones, troubleshooting) next to
+  the recruiter-facing `README.md`. Reference: `project-nl-open-data-pipeline/PROJECT_GUIDE.md`.
 
 ---
 
@@ -150,3 +156,4 @@ Legend: ✅ authored & learned · 📗 authored, not yet learned · 🚧 authori
 | Date | What was authored / changed |
 |---|---|
 | 2026-07-17 | Restructured repo to module layout; wrote PLAN.md, new README/CLAUDE.md, module skeletons; authored Module 2 (adapted SQL lessons + Week B ELT/scheduling content + `nl-open-data-pipeline` project scaffold). |
+| 2026-07-18 | Learner feedback: Module 2 confusing, no clear order. New conventions (all future modules): module README = ordered checkbox route; every project gets learner-facing PROJECT_GUIDE.md (run steps, code walkthrough, recipe, milestones). Applied both to Module 2. |

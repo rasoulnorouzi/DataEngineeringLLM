@@ -6,71 +6,108 @@ By the end of this module you can: query and design relational data in PostgreSQ
 infrastructure with Docker, and build a **real, scheduled ELT pipeline** that ingests Dutch
 open data every day — your first deployable portfolio project.
 
-## Portfolio Project: [`nl-open-data-pipeline`](project-nl-open-data-pipeline/README.md)
-
-Ingests Dutch weather data (Open-Meteo API, cities incl. De Bilt, Amsterdam, Rotterdam) into
-Dockerized PostgreSQL on a schedule (GitHub Actions cron), transforms it through layered SQL
-(**raw → staging → marts**), and serves analytics via DuckDB. Tested with pytest, linted and
-CI-checked with GitHub Actions.
-
-> *CV bullet:* "Designed a scheduled ELT pipeline ingesting Dutch open data into Dockerized
-> PostgreSQL with layered SQL transformations and automated nightly runs."
+> **Lost? Follow the route below top-to-bottom. Every step names the exact file to open.
+> Never skip a ☑ box.**
 
 ---
 
-## Setup (once)
+## 🧭 Your Route Through This Module
+
+### Step 0 — Setup (~30 min, do once)
+
+- [ ] Install Docker Desktop and start it. Never used Docker? Read
+      [docs/DOCKER_GUIDE.md](../docs/DOCKER_GUIDE.md) first (~45 min extra, worth it).
+- [ ] Create the module environment:
 
 ```bash
 cd module-02-sql-elt-pipeline
 python -m venv .venv
 .venv\Scripts\activate              # Windows   (Linux/Mac: source .venv/bin/activate)
 pip install -r requirements.txt
-
-# Start the database stack (Docker Desktop must be running)
-cd project-nl-open-data-pipeline
-docker compose -f docker/docker-compose.yml up -d
-docker ps                            # expect week2_postgres + week2_pgadmin
 ```
 
-Access: **pgAdmin** http://localhost:8080 (`student@example.com` / `admin`) ·
-**PostgreSQL** localhost:5432, db `week2_db`, user `student`, pw `student123`.
-Docker completely new to you? Read [docs/DOCKER_GUIDE.md](../docs/DOCKER_GUIDE.md) first.
+- [ ] Start the database:
+
+```bash
+cd project-nl-open-data-pipeline
+docker compose -f docker/docker-compose.yml up -d
+docker ps        # expect: week2_postgres (healthy) + week2_pgadmin
+```
+
+- [ ] Open pgAdmin at http://localhost:8080 (`student@example.com` / `admin`) and confirm you
+      can see the `week2_db` database. Connection details you'll reuse everywhere:
+      host `localhost`, port `5432`, db `week2_db`, user `student`, password `student123`.
+
+**Checkpoint:** `docker ps` shows both containers → you're ready for Day 1.
+
+### Week A — SQL Foundations (Days 1–5, ~2h each)
+
+Same rhythm every day: **read theory → run notebook → do exercise**. Open files in this exact order:
+
+- [ ] **Day 1** — what a database is + first queries
+      1. Read [lessons/day1-setup-and-basics/01_theory_what_is_a_database.md](lessons/day1-setup-and-basics/01_theory_what_is_a_database.md)
+      2. Notebook [lessons/day1-setup-and-basics/02_first_queries.ipynb](lessons/day1-setup-and-basics/02_first_queries.ipynb)
+      3. Exercise [exercises/exercise_1_basic_queries.ipynb](exercises/exercise_1_basic_queries.ipynb)
+- [ ] **Day 2** — JOINs
+      1. Read [lessons/day2-joins/03_theory_joins_explained.md](lessons/day2-joins/03_theory_joins_explained.md)
+      2. Notebook [lessons/day2-joins/04_joins_practice.ipynb](lessons/day2-joins/04_joins_practice.ipynb)
+      3. Exercise [exercises/exercise_2_joins_challenge.ipynb](exercises/exercise_2_joins_challenge.ipynb)
+- [ ] **Day 3** — GROUP BY, CTEs, subqueries
+      1. Read [lessons/day3-grouping-and-subqueries/05_theory_aggregation.md](lessons/day3-grouping-and-subqueries/05_theory_aggregation.md)
+      2. Notebook [lessons/day3-grouping-and-subqueries/06_groupby_ctes_subqueries.ipynb](lessons/day3-grouping-and-subqueries/06_groupby_ctes_subqueries.ipynb)
+- [ ] **Day 4** — window functions
+      1. Read [lessons/day4-window-functions/07_theory_window_functions.md](lessons/day4-window-functions/07_theory_window_functions.md)
+      2. Notebook [lessons/day4-window-functions/08_window_functions_practice.ipynb](lessons/day4-window-functions/08_window_functions_practice.ipynb)
+      3. Exercise [exercises/exercise_3_window_functions.ipynb](exercises/exercise_3_window_functions.ipynb)
+- [ ] **Day 5** — indexing + DuckDB
+      1. Read [lessons/day5-indexing-and-duckdb/09_theory_indexing.md](lessons/day5-indexing-and-duckdb/09_theory_indexing.md)
+      2. Notebook [lessons/day5-indexing-and-duckdb/10_indexing_practice.ipynb](lessons/day5-indexing-and-duckdb/10_indexing_practice.ipynb)
+      3. Read [lessons/day5-indexing-and-duckdb/11_theory_duckdb_intro.md](lessons/day5-indexing-and-duckdb/11_theory_duckdb_intro.md)
+      4. Notebook [lessons/day5-indexing-and-duckdb/12_duckdb_practice.ipynb](lessons/day5-indexing-and-duckdb/12_duckdb_practice.ipynb)
+      5. Exercise [exercises/exercise_4_duckdb_analytics.ipynb](exercises/exercise_4_duckdb_analytics.ipynb)
+
+**Checkpoint:** you can explain JOIN vs GROUP BY vs window function in one sentence each.
+
+### Week B — From Queries to a Pipeline (Days 6–10)
+
+- [ ] **Day 6 (~2h)** — how real pipelines are organized
+      1. Read [lessons/day6-elt-and-layered-sql/13_theory_elt_and_layered_sql.md](lessons/day6-elt-and-layered-sql/13_theory_elt_and_layered_sql.md)
+         (ETL vs ELT, idempotency, raw/staging/marts, dbt-in-concept)
+- [ ] **Day 7 (~2.5h)** — get data from APIs
+      1. Read [lessons/day7-ingestion-from-apis/14_theory_apis_and_ingestion.md](lessons/day7-ingestion-from-apis/14_theory_apis_and_ingestion.md)
+      2. Notebook [lessons/day7-ingestion-from-apis/15_ingestion_practice.ipynb](lessons/day7-ingestion-from-apis/15_ingestion_practice.ipynb)
+         — ingest live Dutch weather into YOUR database
+- [ ] **Day 8 (~2.5h)** — testing + CI (bridge lesson)
+      1. Skim [docs/GIT_GITHUB_GUIDE.md](../docs/GIT_GITHUB_GUIDE.md) if Git feels shaky
+      2. Read [lessons/day8-testing-and-ci/16_theory_pytest_and_github_actions.md](lessons/day8-testing-and-ci/16_theory_pytest_and_github_actions.md)
+- [ ] **Days 9–10 (~3h)** — THE PROJECT
+      1. Open [project-nl-open-data-pipeline/PROJECT_GUIDE.md](project-nl-open-data-pipeline/PROJECT_GUIDE.md)
+         — the full learner guide: what it is, how to run it, every file explained, and how to
+         build one yourself. Work through its Parts 1→5.
+      2. Finish with its milestones (extend the pipeline, publish to GitHub, green CI badge).
 
 ---
 
-## Week A — SQL Foundations (~10 hrs)
+## 🏆 Portfolio Project: `nl-open-data-pipeline`
 
-Daily pattern: 📖 theory → 💻 notebook → ✏️ exercise.
+Scheduled ingest of Dutch weather data (Open-Meteo API, incl. KNMI reference station De Bilt) →
+Dockerized PostgreSQL → layered SQL (**raw → staging → marts**) → weekly analytics. Tested with
+pytest, CI + nightly cron via GitHub Actions.
 
-| Day | Folder | Topics | Time |
-|-----|--------|--------|------|
-| 1 | [lessons/day1-setup-and-basics](lessons/day1-setup-and-basics/) | What a database is, Docker setup, SELECT/WHERE/ORDER BY | ~2h |
-| 2 | [lessons/day2-joins](lessons/day2-joins/) | INNER/LEFT/RIGHT/FULL JOINs | ~2h |
-| 3 | [lessons/day3-grouping-and-subqueries](lessons/day3-grouping-and-subqueries/) | GROUP BY, HAVING, CTEs, subqueries | ~2h |
-| 4 | [lessons/day4-window-functions](lessons/day4-window-functions/) | ROW_NUMBER, RANK, LAG/LEAD, frames | ~2h |
-| 5 | [lessons/day5-indexing-and-duckdb](lessons/day5-indexing-and-duckdb/) | Indexes, EXPLAIN, DuckDB analytics | ~2h |
+Two documents, two purposes:
+- [PROJECT_GUIDE.md](project-nl-open-data-pipeline/PROJECT_GUIDE.md) — **for you, the learner**: full walkthrough & explanations
+- [README.md](project-nl-open-data-pipeline/README.md) — **for recruiters/visitors**: what ships with the repo when you publish it
 
-Extra practice: [exercises/](exercises/) (4 notebooks with collapsible solutions).
-
-## Week B — From Queries to a Pipeline (~10 hrs)
-
-| Day | Lesson | Topics | Time |
-|-----|--------|--------|------|
-| 6 | [lessons/day6-elt-and-layered-sql](lessons/day6-elt-and-layered-sql/) | ETL vs ELT, idempotency, incremental loads, raw/staging/marts, dbt-in-concept | ~2h |
-| 7 | [lessons/day7-ingestion-from-apis](lessons/day7-ingestion-from-apis/) | HTTP APIs, JSON, requests, upserts — ingest live weather data | ~2.5h |
-| 8 | [lessons/day8-testing-and-ci](lessons/day8-testing-and-ci/) | **Bridge lesson:** pytest from zero + your first GitHub Actions workflow (CI + cron) | ~2.5h |
-| 9–10 | [project-nl-open-data-pipeline](project-nl-open-data-pipeline/README.md) | Build the project following its milestone guide; publish as your own repo | ~3h |
+> *CV bullet:* "Designed a scheduled ELT pipeline ingesting Dutch open data into Dockerized
+> PostgreSQL with layered SQL transformations and automated nightly runs."
 
 ---
 
-## Definition of Done
+## ✅ Definition of Done
 
-- [ ] All Week A notebooks run against your Docker Postgres; exercises attempted
-- [ ] Week B lessons done: you can explain idempotency, raw/staging/marts, and what CI is
-- [ ] `python -m pipeline.run` executes the full pipeline locally (fetch → load → transform)
-- [ ] `pytest` green in the project folder
-- [ ] Project published as your own public GitHub repo with a green CI badge and the scheduled
-      workflow enabled
+- [ ] Every checkbox above ticked
+- [ ] `python -m pipeline.run` succeeds locally; running it twice does NOT duplicate rows
+- [ ] `pytest -v` green in the project folder (6 tests, 0 skipped while Docker runs)
+- [ ] Project published as your own public GitHub repo, CI badge green, scheduled workflow enabled
 
-Then report back ("Module 2 done") so the tracker in [PLAN.md](../PLAN.md) gets updated, and ask
-for **Module 3** to be authored.
+Then report "Module 2 done" so [PLAN.md](../PLAN.md) gets updated — and ask for **Module 3**.

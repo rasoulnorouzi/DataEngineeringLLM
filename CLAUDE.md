@@ -60,11 +60,27 @@ Each module folder follows this template:
 
 ```
 module-0X-<topic>/
-├── README.md            # goals, weekly schedule (~10 hrs/wk), project one-pager, setup
+├── README.md            # THE ROUTE: ordered checkbox path through the module (see below)
 ├── lessons/             # NN_theory_*.md + NN_*_practice.ipynb, numbered in learning order
 ├── exercises/           # extra practice notebooks with collapsible solutions
 └── project-<name>/      # the portfolio artifact — see Project Conventions below
 ```
+
+**Module README = a route, not an overview (IMPORTANT).** The learner must never wonder "where
+do I start, what's next?". Every module README contains a "🧭 Your Route" section: an ordered
+checkbox list where every step links the exact file to open, in order (Step 0 setup with a
+checkpoint → per-day: read theory X → run notebook Y → do exercise Z → project via its guide),
+ending with a "Definition of Done" checklist. `module-02-sql-elt-pipeline/README.md` is the
+reference example.
+
+**Every project ships two docs with distinct audiences:**
+- `PROJECT_GUIDE.md` — **for the learner**: what the project is in plain words, how to run it
+  (with expected output), architecture + one-record data-flow trace, file-by-file code
+  walkthrough, design-decision rationale, a transferable "recipe" for building a similar project
+  from scratch, the milestones (with collapsible hints/solutions), and a troubleshooting table.
+  `project-nl-open-data-pipeline/PROJECT_GUIDE.md` is the reference example.
+- `README.md` — **for recruiters/visitors** when the folder is published as a standalone repo:
+  short pitch, architecture, quickstart, layout. Links to the guide for course learners.
 
 ---
 
