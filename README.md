@@ -1,178 +1,91 @@
-# Data Engineering & LLMs for Organizational Process Automation
+# AI Engineer Path 🇳🇱
 
-Welcome to the complete **Data Engineering & LLMs** curriculum! This is a self-study course designed to take you from beginner to job-ready in data engineering with AI integration.
+A self-paced, **project-based** course to go from Python basics to **professional AI engineer**,
+tuned for the Dutch job market (Azure-centric). Every module ends with a **portfolio project** you
+can show in interviews: a deployed API, a scheduled pipeline, a RAG system, an LLM agent — each one
+a self-contained repo with tests and CI.
 
----
-
-## 📚 Curriculum Overview
-
-This curriculum is organized into **weekly modules**. Each week focuses on a specific set of skills and tools used in real data engineering roles.
-
-### ✅ Completed Weeks
-
-| Week | Topic | Description | Status |
-|------|-------|-------------|--------|
-| **Week 1** | [Python for Data Engineering](week1-python-for-data/README.md) | Type hints, dataclasses, NumPy, pandas, pathlib, logging, professional Python code | ✅ Ready |
-| **Week 2** | [SQL and Relational Databases](week2-sql-databases/README.md) | PostgreSQL, SQL queries, JOINs, GROUP BY, window functions, indexing, DuckDB | ✅ Ready |
-
-### 🚧 Upcoming Weeks
-
-| Week | Topic | Description |
-|------|-------|-------------|
-| **Week 3** | Data Pipelines & ETL | Building automated data pipelines |
-| **Week 4** | Advanced ETL & Orchestration | Apache Airflow, workflow management |
-| **Week 5** | Cloud Data Warehouses | Snowflake, BigQuery, cloud platforms |
-| **Week 6** | dbt & Data Transformations | dbt for SQL-based data transformations |
-| **Module 3** | AI & Vector Databases | pgvector, embeddings, LLM integration |
+> 📋 Curriculum details, progress tracking, and the authoring plan live in [PLAN.md](PLAN.md).
 
 ---
 
-## 🎯 Learning Path
+## 🗺️ Roadmap (7 modules, ~15 weeks @ ~10 hrs/week)
 
-### Week 1: Python for Data Engineering
-**Duration:** ~10 hours  
-**Prerequisites:** Basic Python knowledge
+| # | Module | Weeks | Portfolio project | Status |
+|---|--------|-------|-------------------|--------|
+| 1 | [Professional Python & Engineering Habits](module-01-python-foundations/README.md) | 2 | `datacli` — typed, tested CSV-cleaning CLI with CI badge | 📗 Lessons ready (project TBD) |
+| 2 | [SQL, Docker & a Scheduled ELT Pipeline](module-02-sql-elt-pipeline/README.md) | 2 | `nl-open-data-pipeline` — scheduled Dutch open-data ingest → Postgres → layered SQL → DuckDB analytics | 📗 Ready |
+| 3 | [FastAPI, CI/CD & First Azure Deploy](module-03-fastapi-azure/README.md) | 2 | `insight-api` — containerized FastAPI service, CD to Azure Container Apps | ⬜ Planned |
+| 4 | [LLM Engineering Fundamentals](module-04-llm-engineering/README.md) | 2 | `doc-extract` — LLM document→JSON extraction with eval suite in CI | ⬜ Planned |
+| 5 | [RAG & Vector Databases](module-05-rag-pgvector/README.md) | 2 | `ask-my-docs` — RAG API over pgvector with cited answers + retrieval evals | ⬜ Planned |
+| 6 | [Agents & Tool Harnessing](module-06-agents-langgraph/README.md) | 2 | `data-analyst-agent` — LangGraph agent answering NL questions over a real DB | ⬜ Planned |
+| 7 | [Capstone: `knowledge-copilot`](module-07-capstone/README.md) | 3 | "Ask HR" knowledge assistant — RAG + agents + FastAPI + CI/CD + Azure | ⬜ Planned |
 
-Learn to write professional, production-ready Python code for data work:
-- Type hints and dataclasses for clean code
-- NumPy for fast mathematical operations
-- pandas for data manipulation and analysis
-- pathlib for file system operations
-- logging for professional debugging
-- Build a complete data pipeline
-
-👉 [Start Week 1](week1-python-for-data/README.md)
-
-### Week 2: SQL and Relational Databases
-**Duration:** ~10 hours  
-**Prerequisites:** Week 1 (helpful but not required)
-
-Master SQL and relational databases — the foundation of all data engineering:
-- Install PostgreSQL with Docker
-- Write SQL queries: SELECT, WHERE, ORDER BY, JOINs
-- Aggregate data with GROUP BY and HAVING
-- Use CTEs and subqueries for complex logic
-- Window functions: ROW_NUMBER, RANK, LAG, LEAD
-- Understand indexing and query optimization
-- Query CSV/Parquet files with DuckDB
-
-👉 [Start Week 2](week2-sql-databases/README.md)
+**What you can do at the end:** build and deploy LLM-powered products end-to-end — FastAPI services,
+RAG systems, multi-tool agents — with tests, evals, CI/CD, Docker, and Azure. These map directly to
+NL AI-engineer job postings.
 
 ---
 
-## 🚀 How to Use This Curriculum
+## 🚀 How This Course Works
 
-### 1. Work Through Weeks in Order
-Each week builds on the previous one. Start with Week 1 and progress sequentially.
-
-### 2. Follow the Daily Pattern
-Each week follows this structure:
-- 📖 **Read the theory file** (.md) — concepts explained from zero with analogies
-- 💻 **Work through the notebook** (.ipynb) — run queries, see results, practice
-- ✏️ **Complete exercises** — test your understanding with challenges
-
-### 3. Set Up Your Environment
-Each week includes setup instructions in its README. Generally:
-- Install Docker (for databases and tools)
-- Create a Python virtual environment
-- Install dependencies from `requirements.txt`
-- Open VS Code and start learning!
-
-### 4. Don't Rush!
-- Master each concept before moving to the next
-- Run every code cell yourself
-- Complete all exercises
-- Take breaks and practice with real datasets
-
----
-
-## 📁 Project Structure
-
-```
-DataEngineeringLLM/
-├── week1-python-for-data/          # Week 1 materials
-│   ├── README.md                   # Week 1 overview and setup
-│   ├── 01_python_for_data.ipynb    # Main notebook (work through this)
-│   ├── 01_python_for_data_executed.ipynb  # Reference version
-│   ├── data/                       # Sample datasets
-│   └── ...
-│
-├── week2-sql-databases/            # Week 2 materials
-│   ├── README.md                   # Week 2 overview and setup
-│   ├── DOCKER_GUIDE.md             # Comprehensive Docker explanation
-│   ├── day1-setup-and-basics/      # Day 1 lessons
-│   ├── day2-joins/                 # Day 2 lessons
-│   ├── day3-grouping-and-subqueries/
-│   ├── day4-window-functions/
-│   ├── day5-indexing-and-duckdb/
-│   ├── exercises/                  # Practice exercises
-│   └── ...
-│
-└── README.md                       # This file (curriculum overview)
-```
-
----
-
-## 💡 Learning Philosophy
-
-This curriculum follows these principles:
-
-1. **Explain WHY before HOW** — Every concept starts with why it exists
-2. **Start from zero** — No assumptions about prior knowledge
-3. **Use analogies** — Abstract concepts paired with real-world examples
-4. **Show before/after** — Hard way first, then elegant solution
-5. **Progressive complexity** — Simple → complex, one step at a time
-6. **Hands-on practice** — Theory files + interactive notebooks + exercises
-7. **Production-ready** — Teaches professional practices from day one
+1. **Work modules in order.** Each module composes skills from earlier ones (the agent in Module 6
+   queries the database you build in Module 2 and the RAG index from Module 5).
+2. **Daily pattern per week:** 📖 read the theory doc (WHY first, with analogies) → 💻 work the
+   notebook → ✏️ do exercises (collapsible solutions) → 🔨 advance the module project.
+3. **Content is delivered weekly.** Only the modules marked 📗 are authored. When you finish a week,
+   ask Claude Code for the next one — it reads [PLAN.md](PLAN.md) and authors the next week's
+   materials. This keeps the course adaptive to your actual progress.
+4. **Ship the projects.** Each `project-*/` folder is self-contained: copy it to its own public
+   GitHub repo, get the CI badge green, deploy it. That's your portfolio.
 
 ---
 
 ## 🛠️ Prerequisites
 
-### Software to Install
-- **Python 3.10+** — [Download from python.org](https://www.python.org/downloads/)
-- **VS Code** — [Download from code.visualstudio.com](https://code.visualstudio.com/)
-- **Docker** — [Install guide](https://docs.docker.com/engine/install/)
-- **Git** — [Install guide](https://git-scm.com/downloads)
-
-### Skills You Need
-- Basic programming knowledge (any language)
-- Comfortable using terminal/command prompt
-- Willingness to learn!
+- **Python 3.10+**, **VS Code** (with Jupyter extension), **Docker Desktop**, **Git** + a GitHub account
+- From Module 3: a free **Azure** account (guide provided in `docs/`)
+- From Module 4: an OpenAI or Anthropic API key — total course budget **€10–20**; a free local
+  fallback via **Ollama** is used for all iterative development
+- Basic programming knowledge; no data engineering or AI experience assumed
 
 ---
 
-## 🎓 What You'll Be Able to Do After This Curriculum
+## 📁 Repo Layout
 
-By the end of all weeks, you'll be able to:
+```
+├── PLAN.md                          # Master plan + progress tracker (source of truth)
+├── docs/                            # Shared guides (Docker, Git, Azure, LLM budget)
+├── module-01-python-foundations/    # lessons/ + exercises/ + project-datacli/
+├── module-02-sql-elt-pipeline/      # lessons/ + exercises/ + project-nl-open-data-pipeline/
+├── module-03-fastapi-azure/         # ...
+├── ...
+└── module-07-capstone/
+```
 
-- ✅ Write clean, professional Python code for data work
-- ✅ Query and manage relational databases with SQL
-- ✅ Build automated ETL/ELT data pipelines
-- ✅ Orchestrate workflows with Apache Airflow
-- ✅ Work with cloud data warehouses (Snowflake, BigQuery)
-- ✅ Transform data with dbt
-- ✅ Integrate AI/LLMs into data pipelines
-- ✅ Store and query AI embeddings with pgvector
+Each module: `README.md` (goals + schedule) · `lessons/` (theory + notebooks) · `exercises/` ·
+`project-<name>/` (the portfolio artifact).
 
-These are the **exact skills** used in data engineering roles at top companies!
+---
+
+## 💡 Learning Philosophy
+
+1. **Explain WHY before HOW** — every concept starts with the problem it solves
+2. **Start from zero** — no assumptions, jargon explained on first use
+3. **Hard way first** — e.g., build a raw agent loop before touching LangGraph
+4. **Projects over toys** — every module produces something deployable and demo-able
+5. **Production habits from day one** — types, tests, CI, logging, cost control
 
 ---
 
 ## 📞 Getting Help
 
-- Check the `README.md` in each week's folder for setup troubleshooting
-- For Docker issues, see the comprehensive [DOCKER_GUIDE.md](week2-sql-databases/DOCKER_GUIDE.md)
-- Each notebook includes expected output descriptions to verify your results
-- Exercises have spoiler solutions for when you get stuck
+- Each module README has setup + troubleshooting
+- Docker issues → [docs/DOCKER_GUIDE.md](docs/DOCKER_GUIDE.md)
+- Exercises include collapsible solutions for when you're stuck
 
 ---
 
-## 📅 Last Updated
+**Last updated:** 2026-07-17 · **Status:** Modules 1–2 ready · Module 3 next
 
-**Date:** 2026-04-13  
-**Status:** Week 1 ✅ | Week 2 ✅ | More weeks coming!
-
----
-
-**Ready to start?** Begin with [Week 1: Python for Data Engineering](week1-python-for-data/README.md)!
+**Ready?** Continue with [Module 2: SQL, Docker & a Scheduled ELT Pipeline](module-02-sql-elt-pipeline/README.md)
