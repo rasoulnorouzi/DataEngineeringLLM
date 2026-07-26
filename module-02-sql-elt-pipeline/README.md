@@ -15,9 +15,9 @@ open data every day — your first deployable portfolio project.
 
 ### Step 0 — Setup (~30 min, do once)
 
-- [ ] Install Docker Desktop and start it. Never used Docker? Read
+- [x] Install Docker Desktop and start it. Never used Docker? Read
       [docs/DOCKER_GUIDE.md](../docs/DOCKER_GUIDE.md) first (~45 min extra, worth it).
-- [ ] Create the module environment:
+- [x] Create the module environment:
 
 ```bash
 cd module-02-sql-elt-pipeline
@@ -26,7 +26,7 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-- [ ] Start the database:
+- [x] Start the database:
 
 ```bash
 cd project-nl-open-data-pipeline
@@ -34,7 +34,7 @@ docker compose -f docker/docker-compose.yml up -d
 docker ps        # expect: week2_postgres (healthy) + week2_pgadmin
 ```
 
-- [ ] Open pgAdmin at http://localhost:8080 (`student@example.com` / `admin`) and confirm you
+- [x] Open pgAdmin at http://localhost:8080 (`student@example.com` / `admin`) and confirm you
       can see the `week2_db` database. Connection details you'll reuse everywhere:
       host `localhost`, port `5432`, db `week2_db`, user `student`, password `student123`.
 
@@ -44,7 +44,7 @@ docker ps        # expect: week2_postgres (healthy) + week2_pgadmin
 
 Same rhythm every day: **read theory → run notebook → do exercise**. Open files in this exact order:
 
-- [ ] **Day 1** — what a database is + first queries
+- [x] **Day 1** — what a database is + first queries
       1. Read [lessons/day1-setup-and-basics/01_theory_what_is_a_database.md](lessons/day1-setup-and-basics/01_theory_what_is_a_database.md)
       2. Notebook [lessons/day1-setup-and-basics/02_first_queries.ipynb](lessons/day1-setup-and-basics/02_first_queries.ipynb)
       3. Exercise [exercises/exercise_1_basic_queries.ipynb](exercises/exercise_1_basic_queries.ipynb)
