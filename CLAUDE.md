@@ -143,6 +143,15 @@ docker compose -f docker/docker-compose.yml down
 Access: pgAdmin http://localhost:8080 (`student@example.com` / `admin`);
 PostgreSQL localhost:5432, db `week2_db`, user `student`, password `student123`.
 
+### Executing a notebook headlessly (to verify it runs top-to-bottom)
+
+```bash
+cd module-0X-<topic>
+.venv/bin/python -m jupyter nbconvert --to notebook --execute --inplace lessons/<path>/<name>.ipynb
+```
+
+Requires the module's stack to be up first (e.g. the Module 2 Postgres containers).
+
 ### Tests
 
 ```bash
@@ -174,6 +183,10 @@ pytest -v
 ## Notes for Claude Code
 
 - **Educational clarity beats code elegance.** "Refactor" means improve learning outcomes.
+- In SQL lesson notebooks, the `run_query` helper (built on `pd.read_sql_query`) is **SELECT-only** —
+  it crashes on statements that return no rows. DDL/DML (CREATE/DROP/INSERT/UPDATE) must go through
+  a committing `run_command` helper (see `10_indexing_practice.ipynb` for the pattern). Notebooks
+  that create database objects should start with an idempotent reset cell so they re-run cleanly.
 - Follow existing patterns for structure and pedagogy when extending the curriculum.
 - Never author ahead of the tracker without being asked — the weekly-delivery model is deliberate
   (it keeps content aligned with the learner's actual progress and lets the plan adapt).

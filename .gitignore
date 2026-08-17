@@ -10,3 +10,6 @@ __pycache__/
 .ruff_cache/
 *.egg-info/
 data_output/
+
+# Day 5 DuckDB lesson: CSV/Parquet regenerated from PostgreSQL by the notebook's setup cell
+module-02-sql-elt-pipeline/lessons/day5-indexing-and-duckdb/data/
