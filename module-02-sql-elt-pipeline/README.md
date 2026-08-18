@@ -77,9 +77,16 @@ Same rhythm every day: **read theory → run notebook → do exercise**. Open fi
       1. Read [lessons/day7-ingestion-from-apis/14_theory_apis_and_ingestion.md](lessons/day7-ingestion-from-apis/14_theory_apis_and_ingestion.md)
       2. Notebook [lessons/day7-ingestion-from-apis/15_ingestion_practice.ipynb](lessons/day7-ingestion-from-apis/15_ingestion_practice.ipynb)
          — ingest live Dutch weather into YOUR database
-- [ ] **Day 8 (~2.5h)** — testing + CI (bridge lesson)
+- [ ] **Day 8 (~4h)** — testing, linting + CI (bridge lesson) — *everything the project's
+      milestones assume you know*
       1. Skim [docs/GIT_GITHUB_GUIDE.md](../docs/GIT_GITHUB_GUIDE.md) if Git feels shaky
       2. Read [lessons/day8-testing-and-ci/16_theory_pytest_and_github_actions.md](lessons/day8-testing-and-ci/16_theory_pytest_and_github_actions.md)
+         (pytest, fixtures, reading failures, unit vs integration, ruff, GitHub Actions,
+         service containers, secrets, cron, badges, debugging red CI)
+      3. Notebook [lessons/day8-testing-and-ci/17_testing_and_ci_practice.ipynb](lessons/day8-testing-and-ci/17_testing_and_ci_practice.ipynb)
+         — write tests, break them, read the failures, meet ruff, read the real workflows,
+         then 3 graded exercises (the last one rehearses project Milestone 4)
+      4. Or, terminal-only version of the same drills: the lab in §18 of the theory doc
 - [ ] **Days 9–10 (~3h)** — THE PROJECT
       1. Open [project-nl-open-data-pipeline/PROJECT_GUIDE.md](project-nl-open-data-pipeline/PROJECT_GUIDE.md)
          — the full learner guide: what it is, how to run it, every file explained, and how to
@@ -107,7 +114,8 @@ Two documents, two purposes:
 
 - [ ] Every checkbox above ticked
 - [ ] `python -m pipeline.run` succeeds locally; running it twice does NOT duplicate rows
-- [ ] `pytest -v` green in the project folder (6 tests, 0 skipped while Docker runs)
+- [ ] `ruff check .` clean and `pytest -v` green in the project folder (6 shipped tests,
+      0 skipped while Docker runs — more once you add your own in the Day 8 lab and Milestone 4)
 - [ ] Project published as your own public GitHub repo, CI badge green, scheduled workflow enabled
 
 Then report "Module 2 done" so [PLAN.md](../PLAN.md) gets updated — and ask for **Module 3**.

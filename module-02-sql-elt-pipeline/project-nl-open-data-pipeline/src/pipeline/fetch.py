@@ -28,6 +28,8 @@ def reshape_daily(daily: dict) -> list[dict]:
     The API is column-oriented ({"time": [...], "temperature_2m_max": [...]});
     our raw table wants one row per day.
     """
+    # strict=True: if the API ever returns arrays of different lengths, that is corrupt
+    # source data - fail loudly rather than silently dropping the extra days.
     return [
         {"obs_date": d, "temp_max": tmax, "temp_min": tmin, "precip_mm": prec}
         for d, tmax, tmin, prec in zip(
@@ -35,6 +37,7 @@ def reshape_daily(daily: dict) -> list[dict]:
             daily["temperature_2m_max"],
             daily["temperature_2m_min"],
             daily["precipitation_sum"],
+            strict=True,
         )
     ]
 

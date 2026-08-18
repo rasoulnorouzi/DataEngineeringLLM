@@ -27,4 +27,11 @@ testpaths = ["tests"]
 
 [tool.ruff]
 line-length = 100
-src = ["src", "tests"]
+src = ["src", "tests"]           # so ruff can tell YOUR packages from third-party ones
+
+[tool.ruff.lint]
+# Pin the rule set explicitly: ruff's defaults grow with new releases, and a rule
+# added upstream should never turn your CI red without you changing a line of code.
+#   E/W = pycodestyle - F = pyflakes (real bugs) - I = import sorting
+#   B = bugbear (likely mistakes) - UP = modern-Python rewrites
+select = ["E", "W", "F", "I", "B", "UP"]

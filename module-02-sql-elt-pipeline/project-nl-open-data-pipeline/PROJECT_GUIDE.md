@@ -123,8 +123,10 @@ the two lines of SQL that make it true.
 pytest -v
 ```
 
-Expected: **6 passed** (with Docker running). 4 are unit tests (pure logic, no network/DB),
-2 are integration tests against your real Postgres.
+Expected: **6 passed** (with Docker running) — plus any tests you wrote yourself in the Day 8
+lab. 4 are unit tests (pure logic, no network/DB), 2 are integration tests against your real
+Postgres. If the 2 integration ones say SKIPPED, your database isn't running (that's by design —
+[Day 8 §6](../lessons/day8-testing-and-ci/16_theory_pytest_and_github_actions.md)).
 
 ---
 
@@ -220,8 +222,9 @@ archive). Pure = no network, no database → trivially testable (`tests/test_fet
 def reshape_daily(daily: dict) -> list[dict]:
 ```
 The API returns column-oriented parallel arrays (`"time": [...], "temperature_2m_max": [...]`);
-we want one dict per day. `zip()` does the pivot — this is the exact code you wrote in the Day 7
-notebook, promoted into a real module.
+we want one dict per day. `zip(..., strict=True)` does the pivot — the exact code you wrote in the
+Day 7 notebook, promoted into a real module and hardened: `strict=True` raises if the arrays ever
+come back with different lengths, instead of silently dropping days (corrupt input should be loud).
 
 ```python
 def fetch_city(city, lat, lon, start, end) -> list[dict]:
@@ -380,6 +383,7 @@ station: the record in `raw.weather_daily` (see the JSONB!), its typed twin in
 `staging.weather_clean`, its week in `marts.weather_weekly`.
 
 ### Milestone 2 — Prove idempotency (~15 min)
+*(Reading a pytest failure: [Day 8 §4–§5](../lessons/day8-testing-and-ci/16_theory_pytest_and_github_actions.md))*
 Part 2.5 if you skipped it. Then find the test in `tests/test_db_integration.py` that proves the
 same thing, and make it fail on purpose: comment out the `ON CONFLICT` clause in `load.py`, run
 `pytest -v`, watch the detector scream, restore it. *(Breaking things on purpose is the fastest
@@ -417,6 +421,8 @@ ORDER BY week_start, precip_rank;
 </details>
 
 ### Milestone 4 — Test your extension (~45 min)
+*(How to think this test through, step by step: [Day 8 §9](../lessons/day8-testing-and-ci/16_theory_pytest_and_github_actions.md); fixtures: §6)*
+
 In `tests/test_db_integration.py`: assert that after `run_sql_files`, `marts.city_rankings`
 exists and Testville has `precip_rank = 1` (only city in test data). Update the
 `executed == [...]` list assertion too.
@@ -448,6 +454,7 @@ def test_rankings_mart(engine):
 </details>
 
 ### Milestone 5 — Publish (~1 h)
+*(Badge markdown: [Day 8 §16](../lessons/day8-testing-and-ci/16_theory_pytest_and_github_actions.md); if CI goes red: §17)*
 [docs/GIT_GITHUB_GUIDE.md](../../docs/GIT_GITHUB_GUIDE.md) → "Publishing a course project": copy
 this folder out to its own public repo, push, watch `ci.yml` go green, add the badge to the
 README, then Actions tab → "Scheduled pipeline run" → **Run workflow** and watch your pipeline
