@@ -1,0 +1,57 @@
+# The whole stack on one network: the API plus its own throwaway Postgres.
+#
+# ⚠️ `name:` is not decoration. Compose derives the project name from the
+# directory containing this file - which is `docker`, exactly like Module 2's
+# compose file. Without an explicit name, both stacks share a project namespace:
+# this one silently attaches MODULE 2's data volume (so the seed below never
+# runs, because Postgres only seeds an empty data directory), and worse, a
+# `docker compose down -v` here would DELETE your Module 2 database.
+name: insight-api
+
+# Two more things worth noticing:
+#   1. The API reaches the database as `postgres` - the SERVICE NAME. Inside a
+#      container, `localhost` means that container, not your laptop.
+#   2. depends_on + condition: service_healthy makes the API wait for Postgres
+#      to be genuinely ready, not merely started.
+#
+# Run from the project root:  docker compose -f docker/docker-compose.yml up --build
+# Reset the data:             docker compose -f docker/docker-compose.yml down -v
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: insight_postgres
+    environment:
+      POSTGRES_DB: week2_db
+      POSTGRES_USER: student
+      POSTGRES_PASSWORD: student123
+    ports:
+      - "5433:5432"          # 5433 on the host, so it can't clash with Module 2's stack
+    volumes:
+      # A volume of our own. Named explicitly for the same reason `name:` exists.
+      - insight_pgdata:/var/lib/postgresql/data
+      # Seeds the warehouse - but ONLY on a fresh volume. If you change the seed,
+      # you need `down -v` for it to take effect.
+      - ../sql/seed_test_data.sql:/docker-entrypoint-initdb.d/seed.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U student -d week2_db"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    container_name: insight_api
+    environment:
+      # `postgres` is the service name above, resolved by Compose's DNS.
+      DATABASE_URL: postgresql+psycopg2://student:student123@postgres:5432/week2_db
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  insight_pgdata:

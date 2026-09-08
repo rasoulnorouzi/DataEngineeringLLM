@@ -269,7 +269,7 @@ After completing Week 1:
 - ✅ Refactor old code to use type hints
 - ✅ Replace `print()` statements with `logging`
 - ✅ Start using `pathlib` instead of `os.path`
-- ✅ Move on to **Week 2: SQL and Relational Databases** → [`../week2-sql-databases/`](../week2-sql-databases/README.md)
+- ✅ Move on to **Module 2: SQL, Docker & a Scheduled ELT Pipeline** → [`module-02-sql-elt-pipeline/`](../../module-02-sql-elt-pipeline/README.md)
 
 In Week 2, you'll learn PostgreSQL, SQL queries, JOINs, window functions, indexing, and DuckDB — the same SQL skills you'll use in every data engineering role!
 

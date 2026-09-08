@@ -1,0 +1,17 @@
+# Module 3 learning environment (lessons + exercises).
+# The project has its own pyproject.toml - install it separately with: pip install -e ".[dev]"
+fastapi
+uvicorn[standard]
+httpx2
+pydantic
+pydantic-settings
+sqlalchemy
+psycopg2-binary
+python-dotenv
+pytest
+ruff
+ipykernel
+jupyter
+pandas
+tabulate
+requests

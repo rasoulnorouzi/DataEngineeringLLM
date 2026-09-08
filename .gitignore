@@ -16,3 +16,9 @@ module-02-sql-elt-pipeline/lessons/day5-indexing-and-duckdb/data/
 
 # Day 8 practice notebook: scratch files it writes (test files, sample modules) are regenerated
 module-02-sql-elt-pipeline/lessons/day8-testing-and-ci/sandbox/
+
+# Module 3 notebooks (Day 5 testing, Day 7 docker) write scratch files here
+module-03-fastapi-azure/lessons/*/sandbox/
+
+# Day 8 notebook writes this while rehearsing the Azure federated credential
+credential.json
