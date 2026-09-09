@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "insight-api"
+version = "0.1.0"
+description = "FastAPI service exposing Dutch open weather data from a layered Postgres warehouse"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "pydantic>=2.7",
+    "pydantic-settings>=2.3",
+    "SQLAlchemy>=2.0",
+    "psycopg2-binary>=2.9",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "httpx2>=2.0",          # the HTTP client fastapi.testclient runs on
+    "ruff>=0.4",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+# Pinned explicitly: ruff's defaults grow with new releases, and a rule added
+# upstream should never turn your CI red without you changing a line of code.
+#   E/W = pycodestyle - F = pyflakes (real bugs) - I = import sorting
+#   B = bugbear (likely mistakes) - UP = modern-Python rewrites
+select = ["E", "W", "F", "I", "B", "UP"]
+
+[tool.ruff.lint.flake8-bugbear]
+# B008 says "don't call a function in an argument default" - excellent advice in
+# general (it is how the mutable-default bug happens), but FastAPI's whole API is
+# built on exactly that pattern: Depends(...) and Query(...) in defaults are how
+# you declare a dependency or a parameter. These calls are evaluated once at
+# import time and never mutated, so they are safe. Tell bugbear that explicitly
+# rather than scattering `# noqa: B008` over every handler.
+extend-immutable-calls = [
+    "fastapi.Depends", "fastapi.Query", "fastapi.Path", "fastapi.Body",
+    "fastapi.Header", "fastapi.Cookie", "fastapi.File", "fastapi.Form",
+    "fastapi.Security",
+]

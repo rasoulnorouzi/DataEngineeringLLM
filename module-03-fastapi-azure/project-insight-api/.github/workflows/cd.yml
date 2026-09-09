@@ -1,0 +1,82 @@
+# The delivery driver: build the image and roll it out, on every merge to main.
+#
+# `needs: test` is the safety mechanism - a red test can never reach production.
+# Without it the two jobs race, and a broken build deploys while the tests are
+# still running.
+#
+# No password is stored anywhere. Login uses OIDC federation: GitHub mints a
+# short-lived token describing THIS repo and THIS branch, and Entra ID trades it
+# for an Azure token valid for minutes. The three secrets below are identifiers,
+# not credentials - useless without a token from the exact repo/branch you
+# registered as the federated credential's `subject`.
+#
+# Setup: docs/AZURE_SETUP_GUIDE.md
+name: CD
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:          # manual "Run workflow" button, for debugging
+
+permissions:
+  id-token: write             # MANDATORY for OIDC - without it, login fails
+  contents: read              # for actions/checkout
+
+jobs:
+  test:
+    uses: ./.github/workflows/ci.yml     # reuse the bouncer, don't duplicate it
+
+  deploy:
+    needs: test                          # <- only runs if CI passed
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to Azure (OIDC, no stored password)
+        uses: azure/login@v3
+        with:
+          client-id:       ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id:       ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Build the image in the cloud
+        # az acr build builds on Azure's machines - no Docker needed on the runner.
+        # The tag is the commit SHA: immutable, traceable, and it guarantees the
+        # next step actually rolls out something new. :latest would not.
+        run: |
+          az acr build \
+            --registry ${{ vars.ACR_NAME }} \
+            --image insight-api:${{ github.sha }} \
+            .
+
+      - name: Roll out the new revision
+        run: |
+          az containerapp update \
+            --name ${{ vars.CONTAINER_APP_NAME }} \
+            --resource-group ${{ vars.AZURE_RESOURCE_GROUP }} \
+            --image ${{ vars.ACR_NAME }}.azurecr.io/insight-api:${{ github.sha }}
+
+      - name: Smoke-test the deployment
+        run: |
+          FQDN=$(az containerapp show \
+            --name ${{ vars.CONTAINER_APP_NAME }} \
+            --resource-group ${{ vars.AZURE_RESOURCE_GROUP }} \
+            --query properties.configuration.ingress.fqdn --output tsv)
+
+          echo "Deployed to https://$FQDN"
+          echo "### 🚀 Deployed: https://$FQDN/docs" >> $GITHUB_STEP_SUMMARY
+
+          # min-replicas 0 means the first request may cold-start. Retry a few times.
+          for attempt in 1 2 3 4 5; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" "https://$FQDN/health" || true)
+            if [ "$code" = "200" ]; then
+              echo "Health check passed on attempt $attempt"
+              exit 0
+            fi
+            echo "Attempt $attempt: got '$code', retrying in 10s (cold start?)"
+            sleep 10
+          done
+
+          echo "::error::Health check never returned 200. Check: az containerapp logs show"
+          exit 1

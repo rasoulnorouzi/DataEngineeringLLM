@@ -14,8 +14,8 @@ a self-contained repo with tests and CI.
 | # | Module | Weeks | Portfolio project | Status |
 |---|--------|-------|-------------------|--------|
 | 1 | [Professional Python & Engineering Habits](module-01-python-foundations/README.md) | 2 | `datacli` — typed, tested CSV-cleaning CLI with CI badge | 📗 Lessons ready (project TBD) |
-| 2 | [SQL, Docker & a Scheduled ELT Pipeline](module-02-sql-elt-pipeline/README.md) | 2 | `nl-open-data-pipeline` — scheduled Dutch open-data ingest → Postgres → layered SQL → DuckDB analytics | 📗 Ready |
-| 3 | [FastAPI, CI/CD & First Azure Deploy](module-03-fastapi-azure/README.md) | 2 | `insight-api` — containerized FastAPI service, CD to Azure Container Apps | ⬜ Planned |
+| 2 | [SQL, Docker & a Scheduled ELT Pipeline](module-02-sql-elt-pipeline/README.md) | 2 | `nl-open-data-pipeline` — scheduled Dutch open-data ingest → Postgres → layered SQL → DuckDB analytics | ✅ Done |
+| 3 | [FastAPI, CI/CD & First Azure Deploy](module-03-fastapi-azure/README.md) | 2 | `insight-api` — containerized FastAPI service, CD to Azure Container Apps | 📗 Ready |
 | 4 | [LLM Engineering Fundamentals](module-04-llm-engineering/README.md) | 2 | `doc-extract` — LLM document→JSON extraction with eval suite in CI | ⬜ Planned |
 | 5 | [RAG & Vector Databases](module-05-rag-pgvector/README.md) | 2 | `ask-my-docs` — RAG API over pgvector with cited answers + retrieval evals | ⬜ Planned |
 | 6 | [Agents & Tool Harnessing](module-06-agents-langgraph/README.md) | 2 | `data-analyst-agent` — LangGraph agent answering NL questions over a real DB | ⬜ Planned |
@@ -33,10 +33,14 @@ NL AI-engineer job postings.
    queries the database you build in Module 2 and the RAG index from Module 5).
 2. **Daily pattern per week:** 📖 read the theory doc (WHY first, with analogies) → 💻 work the
    notebook → ✏️ do exercises (collapsible solutions) → 🔨 advance the module project.
-3. **Content is delivered weekly.** Only the modules marked 📗 are authored. When you finish a week,
+3. **Built to be remembered, not just understood.** Every theory doc opens with predict-first
+   questions, marks each concept with a one-line "remember this", asks recall questions *before*
+   giving answers, and ends with a spaced-review section that re-tests earlier days. Each module
+   ships a cheat sheet. Every code construct is broken down token by token the first time it appears.
+4. **Content is delivered weekly.** Only the modules marked 📗 are authored. When you finish a week,
    ask Claude Code for the next one — it reads [PLAN.md](PLAN.md) and authors the next week's
    materials. This keeps the course adaptive to your actual progress.
-4. **Ship the projects.** Each `project-*/` folder is self-contained: copy it to its own public
+5. **Ship the projects.** Each `project-*/` folder is self-contained: copy it to its own public
    GitHub repo, get the CI badge green, deploy it. That's your portfolio.
 
 ---
@@ -86,6 +90,6 @@ Each module: `README.md` (goals + schedule) · `lessons/` (theory + notebooks) �
 
 ---
 
-**Last updated:** 2026-07-17 · **Status:** Modules 1–2 ready · Module 3 next
+**Last updated:** 2026-09-08 · **Status:** Modules 1–2 done · **Module 3 ready** · Module 4 next
 
-**Ready?** Continue with [Module 2: SQL, Docker & a Scheduled ELT Pipeline](module-02-sql-elt-pipeline/README.md)
+**Ready?** Continue with [Module 3: FastAPI, CI/CD & First Azure Deploy](module-03-fastapi-azure/README.md)
