@@ -1,4 +1,4 @@
-# AI Engineer Path 🇳🇱
+# AI Engineer Path
 
 A self-paced, **project-based** course to go from Python basics to **professional AI engineer**,
 tuned for the Dutch job market (Azure-centric). Every module ends with a **portfolio project** you
